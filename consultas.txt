@@ -11,3 +11,4 @@ class Meta -> verbose_plural_name=
 Si el campo siempre debe ser valor positivo: models.PositiveIntegerField()
 usuario__username?
 usuario.username?
+constraints en Meta

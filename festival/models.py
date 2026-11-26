@@ -21,6 +21,9 @@ class Artista(models.Model):
 
     class Meta:
         ordering = ["nombre"]
+        constraints = [
+            models.CheckConstraint(condition=models.Q(cache__gt=0), name="cache_mayor_0")
+        ]
 
     def __str__(self):
         return self.nombre
@@ -34,6 +37,9 @@ class Escenario(models.Model):
 
     class Meta:
         ordering = ["nombre"]
+        constraints = [
+            models.CheckConstraint(condition=models.Q(aforo__gt=0), name="aforo_mayor_0")
+        ]
 
     def __str__(self):
         return self.nombre
@@ -51,6 +57,10 @@ class Concierto(models.Model):
 
     class Meta:
         ordering = ["fechaHora"]
+        constraints = [
+            models.CheckConstraint(condition=models.Q(duracion__gt=0), name="duracion_mayor_0"),
+            models.CheckConstraint(condition=models.Q(precio__gt=0), name="precio_mayor_0")
+        ]
 
     def __str__(self):
         return f"{self.nombre} - {self.fechaHora}"
@@ -59,8 +69,8 @@ class Concierto(models.Model):
 class Perfil(models.Model):
     usuario = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="perfil")
     dni = models.CharField("DNI", max_length=9, unique=True)
-    telefono = models.PositiveIntegerField(max_length=9)
-    fechaNacimiento = models.DateTimeField()
+    telefono = models.CharField(max_length=15)
+    fechaNacimiento = models.DateField()
     localidad = models.CharField(max_length=100)
 
     class Meta:
@@ -70,4 +80,20 @@ class Perfil(models.Model):
         return f"{self.usuario.username} ({self.dni})"
 
 
-class 
+class Reserva(models.Model):
+    localizador = models.CharField(max_length=9, unique=True)
+    usuario = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="reservas")
+    concierto = models.ForeignKey(Concierto, on_delete=models.PROTECT, related_name="reservas")
+    fechaReserva = models.DateField()
+    numeroEntradas = models.PositiveIntegerField()
+    importeTotal = models.DecimalField(max_digits=10, decimal_places=2)
+    estado = models.BooleanField() #True -> Confirmada | False -> Cancelada
+
+    class Meta:
+        ordering = ["usuario__username"]
+        constraints = [
+            models.CheckConstraint(condition=models.Q(numeroEntradas__gte=1), name="mas_de_1_entrada")
+        ]
+
+    def __str__(self):
+        return f"{self.usuario.username} - {self.localizador}"
