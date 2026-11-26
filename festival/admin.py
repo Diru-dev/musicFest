@@ -5,5 +5,5 @@ from .models import Artista, Concierto, Perfil, Escenario, Reserva
 admin.site.register(Artista)
 admin.site.register(Concierto)
 admin.site.register(Perfil)
-admin.site.register(Artista)
+admin.site.register(Escenario)
 admin.site.register(Reserva)

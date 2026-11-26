@@ -12,3 +12,5 @@ Si el campo siempre debe ser valor positivo: models.PositiveIntegerField()
 usuario__username?
 usuario.username?
 constraints en Meta
+admin.site.register(modelo)
+auto_now_add=True
