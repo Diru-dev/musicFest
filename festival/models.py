@@ -48,6 +48,7 @@ class Escenario(models.Model):
 class Concierto(models.Model):
     nombre = models.CharField(max_length=100)
     fechaHora = models.DateTimeField()
+    descripcion = models.TextField(blank=True)
     duracion = models.PositiveIntegerField() #En minutos
     precio = models.DecimalField(max_digits=10, decimal_places=2)
     escenarios = models.ManyToManyField(Escenario, related_name="conciertos", blank=True) #Un concierto puede tener 1 o varios escenarios
@@ -75,6 +76,7 @@ class Perfil(models.Model):
 
     class Meta:
         ordering = ["usuario__username"]
+        verbose_name_plural="perfiles"
 
     def __str__(self):
         return f"{self.usuario.username} ({self.dni})"

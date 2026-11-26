@@ -7,7 +7,7 @@ models.TextChoices
 models.DateTimeField() =/= models.DateTime()?
 models.OneToOneField() =/= models.ForeignKey() =/= models.ManyToManyField()?
 class Meta -> verbose_name=
-class Meta -> verbose_plural_name=
+class Meta -> verbose_name_plural=
 Si el campo siempre debe ser valor positivo: models.PositiveIntegerField()
 usuario__username?
 usuario.username?
