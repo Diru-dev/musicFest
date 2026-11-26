@@ -14,3 +14,12 @@ usuario.username?
 constraints en Meta
 admin.site.register(modelo)
 auto_now_add=True
+crear una vista para añadir cosas sin usar el adminSite o la shell
+OPERACIONES CRUD MUY IMPORTANTE PARA EL EXAMEN
+
+CHULETA CLASE
+usuario (AUTH_USER_MODEL, usuario.username, usuario__username)
+constraints
+ANNOTATE AGREGGATE EJEMPLOS
+IMPORTS
+SE TIENE QUE AJUSTAR PERFECTAMENTE A LO QUE DIGA LOS NOMBRES DE FUNCIONES ETC..
