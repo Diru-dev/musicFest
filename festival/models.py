@@ -93,7 +93,7 @@ class Reserva(models.Model):
         ordering = ["-fechaReserva"]
         constraints = [
             models.CheckConstraint(condition=models.Q(numeroEntradas__gte=1), name="mas_de_1_entrada"),
-            models.CheckConstriant(condition=models.Q(importeTotal__gte=1), name="importe_mayor_1")
+            models.CheckConstraint(condition=models.Q(importeTotal__gte=0), name="importe_mayor_1")
         ]
 
     def __str__(self):
