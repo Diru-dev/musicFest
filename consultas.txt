@@ -1,0 +1,13 @@
+from django.conf import settings
+settings.AUTH_USER_MODEL
+related_name=?
+on_delete=models.PROTECT
+null=True =/= blank=True?
+models.TextChoices
+models.DateTimeField() =/= models.DateTime()?
+models.OneToOneField() =/= models.ForeignKey() =/= models.ManyToManyField()?
+class Meta -> verbose_name=
+class Meta -> verbose_plural_name=
+Si el campo siempre debe ser valor positivo: models.PositiveIntegerField()
+usuario__username?
+usuario.username?
